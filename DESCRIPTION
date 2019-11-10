@@ -8,7 +8,8 @@ Authors@R:
            email = "richard.telford@uib.no",
            comment = c(ORCID = "0000-0001-9826-3076"))
 Description: Plots turf maps of community composition over time to aid error detection.
-BugReports: https://www.github.com
+BugReports: https://github.com/Between-the-Fjords/turfmapper/issues
+URL: https://github.com/Between-the-Fjords/turfmapper
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
