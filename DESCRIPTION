@@ -1,0 +1,25 @@
+Package: turfmapper
+Title: Plot Community Composition Maps Over Time
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Richard",
+           family = "Telford",
+           role = c("aut", "cre"),
+           email = "richard.telford@uib.no",
+           comment = c(ORCID = "0000-0001-9826-3076"))
+Description: Plots turf maps of community composition over time to aid error detection.
+BugReports: https://www.github.com
+URL: https://www.github.com
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.2)
+Imports: 
+    ggplot2,
+    rlang,
+    dplyr
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
