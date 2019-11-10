@@ -1,0 +1,16 @@
+#' Heathland vegetation data
+#'
+#' A dataset containing the cover and sub-turf presences of plants in two turfs on Norwegian coastal heathland recorded over four years.
+#'
+#' @format A tibble with 198 rows and 21 variables:
+#' \describe{
+#'   \item{site}{Site code}
+#'   \item{year}{year of sampling}
+#'   \item{species}{Species}
+#'   \item{cover}{Percent cover}
+#'   \item{freq1}{Presence/absence in subturf 1}
+#'   ...
+#' }
+#' @source \url{https://www.uib.no/en/rg/EECRG/95156/landpress}
+#' @name heath
+NULL
