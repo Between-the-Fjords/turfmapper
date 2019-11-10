@@ -9,7 +9,6 @@ Authors@R:
            comment = c(ORCID = "0000-0001-9826-3076"))
 Description: Plots turf maps of community composition over time to aid error detection.
 BugReports: https://www.github.com
-URL: https://www.github.com
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
