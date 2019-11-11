@@ -60,7 +60,7 @@ The subturfs are counted from top-left of the turf like the words on a page. We 
 
 ```{r sub-turfmap}
 grid <- make_grid(ncol = 4)
-plot_subturf_grid(grid)
+plot_subturf_grid(grid_long = grid)
 ```
 
 This function will plot the data from one turf over time. 
@@ -72,7 +72,7 @@ heath_long %>%
   make_turf_plot(
     year = year, species = species, cover = cover, subturf = subturf, 
     title = glue::glue("Site {.$site}: plot {.$plot}"), 
-    grid = grid)
+    grid_long = grid)
 ```
 
 There are a few things than need checking here, for example, _Agrostis capillaris_ vs. _Agrostis sp_, _Festuca_, and _Rhytidiadelphus_.
@@ -93,7 +93,7 @@ x <- heath_long %>%
     .y = glue::glue("Site {.$site}: plot {.$plot}"),
     .f = ~make_turf_plot(
       data = .x, year = year, species = species, 
-      cover = cover, subturf = subturf, title = .y, grid = grid)
+      cover = cover, subturf = subturf, title = .y, grid_long = grid)
     )} %>% 
   walk(print) #print all maps
 ```

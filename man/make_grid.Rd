@@ -7,7 +7,7 @@
 \usage{
 make_grid(grid, ncol, nrow = ncol)
 
-plot_subturf_grid(obj)
+plot_subturf_grid(grid_long)
 }
 \arguments{
 \item{grid}{matrix; subturf ID of each subturf}
@@ -16,7 +16,7 @@ plot_subturf_grid(obj)
 
 \item{nrow}{integer; number of rows, defaults to `ncol` for a square grid}
 
-\item{obj}{dataframe, output of `make_grid`}
+\item{grid_long}{dataframe, output of `make_grid`}
 }
 \value{
 `data.frame` with columns `.x`, `.y` and subturf

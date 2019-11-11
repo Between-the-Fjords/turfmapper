@@ -54,11 +54,11 @@ heath_long %>%
   make_turf_plot(
     year = year, species = species, cover = cover, subturf = subturf, 
     title = glue::glue("Site {.$site}: plot {.$plot}"), 
-    grid = grid)
+    grid_long = grid)
 ```
 
 <img src="man/figures/README-one_plot-1.png" width="100%" />
 
 There are a few taxa than need checking here.
 
-See the vignette for plotting multiple turfs. The vignette's source RMD file is a template.
+See the vignette for plotting multiple turfs. The vignette's source RMD file can be used as a template.

@@ -4,12 +4,12 @@
 \alias{make_turf_plot}
 \title{Subturf maps over time}
 \usage{
-make_turf_plot(data, grid, species, cover, year, subturf, title)
+make_turf_plot(data, grid_long, species, cover, year, subturf, title)
 }
 \arguments{
 \item{data}{Community data.frame in long form}
 
-\item{grid}{grid from \code{make_grid}}
+\item{grid_long}{grid from \code{make_grid}}
 
 \item{species}{name of column with species data}
 

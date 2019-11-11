@@ -1,6 +1,6 @@
 #'@title Subturf maps over time
 #'@param data Community data.frame in long form
-#'@param grid grid from \code{make_grid}
+#'@param grid_long grid from \code{make_grid}
 #'@param title character; text for title
 #'@param species name of column with species data
 #'@param cover name of column with cover data
@@ -14,15 +14,15 @@
 #'@importFrom dplyr left_join rename
 #'@export
 
-make_turf_plot <- function(data, grid, species, cover, year, subturf, title){
+make_turf_plot <- function(data, grid_long, species, cover, year, subturf, title){
   #rename columns for convenience
   data <- rename(data, subturf = {{subturf}}, species = {{species}}, year = {{year}})
   
   #check no unidentified subturfs
-  stopifnot(all(data$subturf %in% grid$subturf))
+  stopifnot(all(data$subturf %in% grid_long$subturf))
 
   #join data to grid  
-  data <- left_join(data, grid, by = "subturf")
+  data <- left_join(data, grid_long, by = "subturf")
   
   #plot
   ggplot(data, aes(x = .data$.x, 
