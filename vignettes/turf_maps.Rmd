@@ -1,5 +1,5 @@
 ---
-title: "turf maps"
+title: "Making turf maps"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{turf_maps}
@@ -56,9 +56,7 @@ heath_long %>% slice(1:10) %>%
 ```
 
 
-The subturfs are counted from top-left of the turf like the words on a page. We need to map these onto row/column positions so we can plot them 
-
-This code plots the subturfs in the correct order - if you count the subturfs is a diffent order, the code will need modifying.
+The subturfs are counted from top-left of the turf like the words on a page. We need to map these onto row/column positions so we can plot them with `make_grid`. 
 
 ```{r sub-turfmap}
 grid <- make_grid(ncol = 4)
@@ -67,7 +65,7 @@ plot_subturf_grid(grid)
 
 This function will plot the data from one turf over time. 
 
-```{r one_plot, fig.height=10}
+```{r one_plot, fig.height=10, fig.width = 7}
 
 heath_long %>%
   filter(plot == "10.1.") %>%
@@ -81,7 +79,7 @@ There are a few things than need checking here, for example, _Agrostis capillari
 
 # Multiple Subturf maps
 
-There are lots of turfs, and I want to be able to print them all at once which I can do using the `purrr` package to iterate over the data using the above function.
+There are lots of turfs, and I want to be able to print them all at once which I can do using the `purrr` package to iterate over the data using the above function. 
 
 ```{r many_plots, eval = TRUE, fig.height=11, fig.width = 7, warning=FALSE}
 
@@ -101,3 +99,5 @@ x <- heath_long %>%
 ```
 
 If the plots aren't large enough, change `fig.height` in the chunk options.
+
+Use this vignette's source RMD file as a template.
