@@ -25,7 +25,10 @@ To make the task easier, we developed turf-maps that plot each taxon per turf pe
 ```{r setup}
 # load packages
 library("turfmapper")
-library("tidyverse")
+#library("tidyverse")
+library("dplyr")
+library("tidyr")
+library("purrr")
 ```
 
 

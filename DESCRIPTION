@@ -21,5 +21,8 @@ Imports:
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    glue,
+    purrr,
+    tidyr
 VignetteBuilder: knitr
