@@ -50,7 +50,7 @@ heath_long <- heath %>%
                names_to = "subturf", 
                values_to = "presence", 
                names_prefix = "freq", 
-               names_ptypes = list(subturf = integer())) %>% 
+               names_transform = list(subturf = as.integer)) %>% 
   filter(presence != "0")#only want presences
 
 #first few columns
