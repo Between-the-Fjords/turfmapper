@@ -2,12 +2,13 @@
 title: "Making turf maps"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{turf_maps}
+  %\VignetteIndexEntry{Making turf maps}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r}
+#| include = FALSE
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -22,60 +23,72 @@ We need to be able to identify these problems so we can try to correct them, but
 
 To make the task easier, we developed turf-maps that plot each taxon per turf per year. Since other people probably have similar data, and would find our code useful, I'm going to show how we do it using some data from the [LandPress project](https://www.uib.no/en/rg/EECRG/95156/landpress) which studies how climate and land-use change affects biodiversity and natural resources in Norwegian coastal heathlands. 
 
-```{r setup}
+```{r}
+#| label = "setup",
+#| message = FALSE
 # load packages
 library("turfmapper")
 #library("tidyverse")
 library("dplyr")
 library("tidyr")
 library("purrr")
+library(pipebind) # so native pipe can be used
 ```
 
 
 For each 1m^2^ turf, vegetation cover is estimated on a percent scale, and presence/absence is recorded on a 4 x 4 sub-turf grid. A sample of the data is included in the package
 
-```{r load-data}
+```{r}
+#| label = "load-data"
 data(heath)
 
-heath %>% slice(1:10) %>% 
-  select(site:freq5) %>%
+heath |> slice(1:10) |> 
+  select(site:freq5) |>
   knitr::kable()
 ```
 
-We need to reformat the data with `tidyr::pivot_longer` to make put it into a long format suitable for plotting (see [this post](https://www.fromthebottomoftheheap.net/2019/10/25/pivoting-tidily/)) for more about `pivot_longer`).
+We need to reformat the data with `tidyr::pivot_longer()` to make put it into a long format suitable for plotting (see [this post](https://www.fromthebottomoftheheap.net/2019/10/25/pivoting-tidily/)) for more about `pivot_longer()`).
 
-```{r pivot-long}
-heath_long <- heath %>% 
+```{r}
+#| label = "pivot-long"
+heath_long <- heath |> 
   pivot_longer(cols = matches("^freq\\d+$"), 
                names_to = "subturf", 
                values_to = "presence", 
                names_prefix = "freq", 
-               names_transform = list(subturf = as.integer)) %>% 
+               names_transform = list(subturf = as.integer)) |> 
   filter(presence != "0")#only want presences
 
 #first few columns
-heath_long %>% slice(1:10) %>% 
+heath_long |> slice(1:10) |> 
   knitr::kable()
 ```
 
 
-The subturfs are counted from top-left of the turf like the words on a page. We need to map these onto row/column positions so we can plot them with `make_grid`. 
+The subturfs are counted from top-left of the turf like the words on a page. We need to map these onto row/column positions so we can plot them with `make_grid()`. 
 
-```{r sub-turfmap}
+```{r}
+#| label = "sub-turfmap"
 grid <- make_grid(ncol = 4)
 plot_subturf_grid(grid_long = grid)
 ```
 
 This function will plot the data from one turf over time. 
 
-```{r one_plot, fig.height=10, fig.width = 7}
+```{r}
+#| label = "one_plot",
+#| fig.height = 10,
+#| fig.width = 7
 
-heath_long %>%
-  filter(plot == "10.1.") %>%
-  make_turf_plot(
-    year = year, species = species, cover = cover, subturf = subturf, 
-    title = glue::glue("Site {.$site}: plot {.$plot}"), 
-    grid_long = grid)
+heath_long |>
+  filter(plot == "10.1.") |>
+  bind(x, 
+    make_turf_plot(
+      data = x,
+      year = year, species = species, cover = cover, subturf = subturf, 
+      title = glue::glue("Site {x$site}: plot {x$plot}"), 
+      grid_long = grid)
+  )
 ```
 
 There are a few things than need checking here, for example, _Agrostis capillaris_ vs. _Agrostis sp_, _Festuca_, and _Rhytidiadelphus_.
@@ -84,20 +97,27 @@ There are a few things than need checking here, for example, _Agrostis capillari
 
 There are lots of turfs, and I want to be able to print them all at once which I can do using the `purrr` package to iterate over the data using the above function. 
 
-```{r many_plots, eval = TRUE, fig.height=11, fig.width = 7, warning=FALSE}
+```{r}
+#| label = "many_plots",
+#| eval = TRUE,
+#| fig.height = 11,
+#| fig.width = 7,
+#| warning = FALSE
 
-x <- heath_long %>% 
+x <- heath_long |> 
   # sort
-  arrange(site, plot) %>% 
-  group_by(site, plot) %>% 
-  nest() %>% 
-  {map2(
-    .x = .$data, 
-    .y = glue::glue("Site {.$site}: plot {.$plot}"),
-    .f = ~make_turf_plot(
-      data = .x, year = year, species = species, 
-      cover = cover, subturf = subturf, title = .y, grid_long = grid)
-    )} %>% 
+  arrange(site, plot) |> 
+  group_by(site, plot) |> 
+  nest() |> 
+  bind(x, 
+    {map2(
+      .x = x$data, 
+      .y = glue::glue("Site {x$site}: plot {x$plot}"),
+      .f = ~make_turf_plot(
+        data = .x, year = year, species = species, 
+        cover = cover, subturf = subturf, title = .y, grid_long = grid)
+      )}
+    ) |> 
   walk(print) #print all maps
 ```
 

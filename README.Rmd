@@ -25,23 +25,26 @@ The goal of turfmapper is to plot species * time turf maps.
 You can install `turfmapper` from  [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("Between-the-Fjords/turfmapper")
+# install.packages("remotes")
+remotes::install_github("Between-the-Fjords/turfmapper")
 ```
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
+#| message: false
 library(turfmapper)
 library("tidyverse")
+library(pipebind) # so native pipe can be used
+
 data(heath)
-heath_long <- heath %>% 
+heath_long <- heath |> 
   pivot_longer(cols = matches("^freq\\d+$"), 
                names_to = "subturf", 
                values_to = "presence", 
                names_prefix = "freq", 
-               names_ptypes = list(subturf = integer())) %>% 
+               names_transform = list(subturf = as.integer)) |> 
   filter(presence != "0")#only want presences
 
 #set up subturf grid
@@ -51,12 +54,15 @@ grid <- make_grid(ncol = 4)
 This function will plot the data from one turf over time. 
 
 ```{r one_plot, fig.height=10, fig.width = 7}
-heath_long %>%
-  filter(plot == "10.1.") %>%
-  make_turf_plot(
-    year = year, species = species, cover = cover, subturf = subturf, 
-    title = glue::glue("Site {.$site}: plot {.$plot}"), 
-    grid_long = grid)
+heath_long |>
+  filter(plot == "10.1.") |>
+  bind(x, 
+    make_turf_plot(
+      data = x,
+      year = year, species = species, cover = cover, subturf = subturf, 
+      title = glue::glue("Site {x$site}: plot {x$plot}"), 
+      grid_long = grid)
+  )
 ```
 
 There are a few taxa than need checking here.
