@@ -105,7 +105,8 @@ in the package</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">heath</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">heath</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">heath</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">site</span><span class="op">:</span><span class="va">freq5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -212,16 +213,19 @@ in the package</p>
 to make put it into a long format suitable for plotting (see <a href="https://www.fromthebottomoftheheap.net/2019/10/25/pivoting-tidily/" class="external-link">this
 post</a>) for more about <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer()</a></code>).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">heath_long</span> <span class="op">&lt;-</span> <span class="va">heath</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">matches</a></span><span class="op">(</span><span class="st">"^freq\\d+$"</span><span class="op">)</span>, <span class="co"># subplot presence-absence columns </span></span>
-<span>               names_to <span class="op">=</span> <span class="st">"subturf"</span>, </span>
-<span>               values_to <span class="op">=</span> <span class="st">"presence"</span>, </span>
-<span>               names_prefix <span class="op">=</span> <span class="st">"freq"</span>, </span>
-<span>               names_transform <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>subturf <span class="op">=</span> <span class="va">as.integer</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="va">heath_long</span> <span class="op">&lt;-</span> <span class="va">heath</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">matches</a></span><span class="op">(</span><span class="st">"^freq\\d+$"</span><span class="op">)</span>, <span class="co"># subplot presence-absence columns</span></span>
+<span>    names_to <span class="op">=</span> <span class="st">"subturf"</span>,</span>
+<span>    values_to <span class="op">=</span> <span class="st">"presence"</span>,</span>
+<span>    names_prefix <span class="op">=</span> <span class="st">"freq"</span>,</span>
+<span>    names_transform <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>subturf <span class="op">=</span> <span class="va">as.integer</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">presence</span> <span class="op">!=</span> <span class="st">"0"</span><span class="op">)</span> <span class="co"># only want presences</span></span>
 <span></span>
-<span><span class="co">#first few columns</span></span>
-<span><span class="va">heath_long</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="co"># first few columns</span></span>
+<span><span class="va">heath_long</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -303,12 +307,13 @@ name can be added as a title.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">heath_long</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">plot</span> <span class="op">==</span> <span class="st">"10.1."</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span> </span>
+<span>  <span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>    <span class="fu"><a href="../reference/make_turf_plot.html">make_turf_plot</a></span><span class="op">(</span></span>
 <span>      data <span class="op">=</span> <span class="va">x</span>,</span>
-<span>      year <span class="op">=</span> <span class="va">year</span>, species <span class="op">=</span> <span class="va">species</span>, cover <span class="op">=</span> <span class="va">cover</span>, subturf <span class="op">=</span> <span class="va">subturf</span>, </span>
-<span>      title <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Site {x$site}: plot {x$plot}"</span><span class="op">)</span>, </span>
-<span>      grid_long <span class="op">=</span> <span class="va">grid</span><span class="op">)</span></span>
+<span>      year <span class="op">=</span> <span class="va">year</span>, species <span class="op">=</span> <span class="va">species</span>, cover <span class="op">=</span> <span class="va">cover</span>, subturf <span class="op">=</span> <span class="va">subturf</span>,</span>
+<span>      title <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Site {x$site}: plot {x$plot}"</span><span class="op">)</span>,</span>
+<span>      grid_long <span class="op">=</span> <span class="va">grid</span></span>
+<span>    <span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="turf_maps_files/figure-html/one_plot-1.png" width="672"></p>
 <p>There are a few things than need checking here, for example,
@@ -321,24 +326,46 @@ and <em>Rhytidiadelphus</em>.</p>
 once which I can do using <code><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">purrr::pmap()</a></code> to iterate over the
 data using <code><a href="../reference/make_turf_plot.html">make_turf_plot()</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">heath_long</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">heath_long</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># sort</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">site</span>, <span class="va">plot</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">site</span>, <span class="va">plot</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">pmap</a></span><span class="op">(</span>.f <span class="op">=</span> \<span class="op">(</span><span class="va">site</span>, <span class="va">plot</span>, <span class="va">data</span><span class="op">)</span><span class="op">{</span> </span>
-<span>      <span class="fu"><a href="../reference/make_turf_plot.html">make_turf_plot</a></span><span class="op">(</span></span>
-<span>        data <span class="op">=</span> <span class="va">data</span>,</span>
-<span>        year <span class="op">=</span> <span class="va">year</span>, species <span class="op">=</span> <span class="va">species</span>, cover <span class="op">=</span> <span class="va">cover</span>, subturf <span class="op">=</span> <span class="va">subturf</span>, </span>
-<span>        title <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Site {site}: plot {plot}"</span><span class="op">)</span>, </span>
-<span>        grid_long <span class="op">=</span> <span class="va">grid</span><span class="op">)</span></span>
-<span>      <span class="op">}</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">walk</a></span><span class="op">(</span><span class="va">print</span><span class="op">)</span> <span class="co">#print all maps</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">site</span>, <span class="va">plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">site</span>, <span class="va">plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">pmap</a></span><span class="op">(</span>.f <span class="op">=</span> \<span class="op">(</span><span class="va">site</span>, <span class="va">plot</span>, <span class="va">data</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="../reference/make_turf_plot.html">make_turf_plot</a></span><span class="op">(</span></span>
+<span>      data <span class="op">=</span> <span class="va">data</span>,</span>
+<span>      year <span class="op">=</span> <span class="va">year</span>, species <span class="op">=</span> <span class="va">species</span>, cover <span class="op">=</span> <span class="va">cover</span>, subturf <span class="op">=</span> <span class="va">subturf</span>,</span>
+<span>      title <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Site {site}: plot {plot}"</span><span class="op">)</span>,</span>
+<span>      grid_long <span class="op">=</span> <span class="va">grid</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">walk</a></span><span class="op">(</span><span class="va">print</span><span class="op">)</span> <span class="co"># print all maps</span></span></code></pre></div>
 <p><img src="turf_maps_files/figure-html/many_plots-1.png" width="672"><img src="turf_maps_files/figure-html/many_plots-2.png" width="672"></p>
 <p>If the plots aren’t large enough, change <code>fig.height</code> in
 the chunk options.</p>
 </div>
-  </main>
+<div class="section level2">
+<h2 id="no-subturf-data">No subturf data<a class="anchor" aria-label="anchor" href="#no-subturf-data"></a>
+</h2>
+<p>If there are no subturf data, then you can use
+<code><a href="../reference/make_turf_plot_no_subturfs.html">make_turf_plot_no_subturfs()</a></code>. It is essentially a wrapper
+for <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">ggplot2::geom_tile()</a></code>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">heath</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"freq"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># remove subturf data</span></span>
+<span>  <span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="../reference/make_turf_plot_no_subturfs.html">make_turf_plot_no_subturfs</a></span><span class="op">(</span></span>
+<span>      data <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span>,</span>
+<span>      species <span class="op">=</span> <span class="va">species</span>,</span>
+<span>      cover <span class="op">=</span> <span class="va">cover</span>,</span>
+<span>      title <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Site {x$site}: plot {x$plot}"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="turf_maps_files/figure-html/no-subturf-1.png" width="672"></p>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
