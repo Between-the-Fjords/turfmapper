@@ -1,0 +1,10 @@
+pandoc: 3.1.11
+pkgdown: 2.0.9
+pkgdown_sha: ~
+articles:
+  turf_maps: turf_maps.html
+last_built: 2024-05-24T08:37Z
+urls:
+  reference: https://between-the-fjords.github.io/turfmapper/reference
+  article: https://between-the-fjords.github.io/turfmapper/articles
+

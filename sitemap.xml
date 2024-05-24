@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://between-the-fjords.github.io/turfmapper/404.html</loc>
+  </url>
+  <url>
+    <loc>https://between-the-fjords.github.io/turfmapper/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://between-the-fjords.github.io/turfmapper/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://between-the-fjords.github.io/turfmapper/articles/turf_maps.html</loc>
+  </url>
+  <url>
+    <loc>https://between-the-fjords.github.io/turfmapper/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://between-the-fjords.github.io/turfmapper/index.html</loc>
+  </url>
+  <url>
+    <loc>https://between-the-fjords.github.io/turfmapper/reference/heath.html</loc>
+  </url>
+  <url>
+    <loc>https://between-the-fjords.github.io/turfmapper/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://between-the-fjords.github.io/turfmapper/reference/make_grid.html</loc>
+  </url>
+  <url>
+    <loc>https://between-the-fjords.github.io/turfmapper/reference/make_turf_plot.html</loc>
+  </url>
+</urlset>
