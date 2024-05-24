@@ -30,7 +30,7 @@ remotes::install_github("Between-the-Fjords/turfmapper")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+`turfmapper` is designed for cases when there are cover is recorded at the turf level, and presence-absence at the subturf level. It can also plot data when there are no subturf level data.
 
 ```{r example}
 #| message: false
@@ -38,15 +38,17 @@ library(turfmapper)
 library("tidyverse")
 
 data(heath)
-heath_long <- heath |> 
-  pivot_longer(cols = matches("^freq\\d+$"), 
-               names_to = "subturf", 
-               values_to = "presence", 
-               names_prefix = "freq", 
-               names_transform = list(subturf = as.integer)) |> 
-  filter(presence != "0")#only want presences
+heath_long <- heath |>
+  pivot_longer(
+    cols = matches("^freq\\d+$"),
+    names_to = "subturf",
+    values_to = "presence",
+    names_prefix = "freq",
+    names_transform = list(subturf = as.integer)
+  ) |>
+  filter(presence != "0") # only want presences
 
-#set up subturf grid
+# set up subturf grid
 grid <- make_grid(ncol = 4)
 ```
 
@@ -55,12 +57,13 @@ This function will plot the data from one turf over time.
 ```{r one_plot, fig.height=10, fig.width = 7}
 heath_long |>
   filter(plot == "10.1.") |>
-  (\(x){ 
+  (\(x){
     make_turf_plot(
       data = x,
-      year = year, species = species, cover = cover, subturf = subturf, 
-      title = glue::glue("Site {x$site}: plot {x$plot}"), 
-      grid_long = grid)
+      year = year, species = species, cover = cover, subturf = subturf,
+      title = glue::glue("Site {x$site}: plot {x$plot}"),
+      grid_long = grid
+    )
   })()
 ```
 

@@ -40,7 +40,8 @@ For each 1m^2^ turf, vegetation cover is estimated on a percent scale, and prese
 #| label = "load-data"
 data(heath)
 
-heath |> head() |> 
+heath |>
+  head() |>
   select(site:freq5) |>
   knitr::kable()
 ```
@@ -49,16 +50,19 @@ We need to reformat the data with `tidyr::pivot_longer()` to make put it into a 
 
 ```{r}
 #| label = "pivot-long"
-heath_long <- heath |> 
-  pivot_longer(cols = matches("^freq\\d+$"), # subplot presence-absence columns 
-               names_to = "subturf", 
-               values_to = "presence", 
-               names_prefix = "freq", 
-               names_transform = list(subturf = as.integer)) |> 
+heath_long <- heath |>
+  pivot_longer(
+    cols = matches("^freq\\d+$"), # subplot presence-absence columns
+    names_to = "subturf",
+    values_to = "presence",
+    names_prefix = "freq",
+    names_transform = list(subturf = as.integer)
+  ) |>
   filter(presence != "0") # only want presences
 
-#first few columns
-heath_long |> head() |> 
+# first few columns
+heath_long |>
+  head() |>
   knitr::kable()
 ```
 
@@ -80,12 +84,13 @@ plot_subturf_grid(grid_long = grid)
 
 heath_long |>
   filter(plot == "10.1.") |>
-  (\(x){ 
+  (\(x){
     make_turf_plot(
       data = x,
-      year = year, species = species, cover = cover, subturf = subturf, 
-      title = glue::glue("Site {x$site}: plot {x$plot}"), 
-      grid_long = grid)
+      year = year, species = species, cover = cover, subturf = subturf,
+      title = glue::glue("Site {x$site}: plot {x$plot}"),
+      grid_long = grid
+    )
   })()
 ```
 
@@ -102,19 +107,45 @@ There are lots of turfs, and I want to be able to print them all at once which I
 #| fig.width = 7,
 #| warning = FALSE
 
-x <- heath_long |> 
+x <- heath_long |>
   # sort
-  arrange(site, plot) |> 
-  group_by(site, plot) |> 
-  nest() |> 
-  pmap(.f = \(site, plot, data){ 
-      make_turf_plot(
-        data = data,
-        year = year, species = species, cover = cover, subturf = subturf, 
-        title = glue::glue("Site {site}: plot {plot}"), 
-        grid_long = grid)
-      }) |> 
-  walk(print) #print all maps
+  arrange(site, plot) |>
+  group_by(site, plot) |>
+  nest() |>
+  pmap(.f = \(site, plot, data){
+    make_turf_plot(
+      data = data,
+      year = year, species = species, cover = cover, subturf = subturf,
+      title = glue::glue("Site {site}: plot {plot}"),
+      grid_long = grid
+    )
+  }) |>
+  walk(print) # print all maps
 ```
 
 If the plots aren't large enough, change `fig.height` in the chunk options.
+
+# No subturf data
+
+If there are no subturf data, then you can use `make_turf_plot_no_subturfs()`. It is essentially a wrapper for `ggplot2::geom_tile()`.
+
+```{r}
+#| label = no-subturf,
+#| eval = TRUE,
+#| fig.height = 11,
+#| fig.width=  7,
+#| warning=  FALSE
+
+heath |>
+  select(-starts_with("freq")) |> # remove subturf data
+  (\(x){
+    make_turf_plot_no_subturfs(
+      data = x,
+      year = as.numeric(year),
+      species = species,
+      cover = cover,
+      title = glue::glue("Site {x$site}: plot {x$plot}")
+    )
+  })()
+```
+
