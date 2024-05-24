@@ -27,3 +27,6 @@ a ggplot object
 \description{
 Subturf maps over time
 }
+\details{
+See vignette for examples
+}

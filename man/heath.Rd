@@ -3,7 +3,8 @@
 \name{heath}
 \alias{heath}
 \title{Heathland vegetation data}
-\format{A tibble with 198 rows and 21 variables:
+\format{
+A tibble with 198 rows and 21 variables:
 \describe{
   \item{site}{Site code}
   \item{year}{year of sampling}
@@ -11,7 +12,8 @@
   \item{cover}{Percent cover}
   \item{freq1}{Presence/absence in subturf 1}
   ...
-}}
+}
+}
 \source{
 \url{https://www.uib.no/en/rg/EECRG/95156/landpress}
 }

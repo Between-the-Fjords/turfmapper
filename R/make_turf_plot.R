@@ -6,6 +6,7 @@
 #'@param cover name of column with cover data
 #'@param year name of column with year data
 #'@param subturf name of column with subturf IDs 
+#'@details See vignette for examples
 #'@return a ggplot object
 #'@importFrom ggplot2 ggplot aes geom_tile facet_grid ggtitle 
 #'@importFrom ggplot2 scale_x_continuous scale_y_continuous scale_fill_distiller
