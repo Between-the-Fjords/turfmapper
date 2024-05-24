@@ -24,7 +24,6 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(turfmapper)
 library("tidyverse")
-library(pipebind) # so native pipe can be used
 
 data(heath)
 heath_long <- heath |> 
@@ -44,18 +43,17 @@ This function will plot the data from one turf over time.
 ``` r
 heath_long |>
   filter(plot == "10.1.") |>
-  bind(x, 
+  (\(x){ 
     make_turf_plot(
       data = x,
       year = year, species = species, cover = cover, subturf = subturf, 
       title = glue::glue("Site {x$site}: plot {x$plot}"), 
       grid_long = grid)
-  )
+  })()
 ```
 
 <img src="man/figures/README-one_plot-1.png" width="100%" />
 
 There are a few taxa than need checking here.
 
-See the vignette for plotting multiple turfs. The vignette’s source RMD
-file can be used as a template.
+See the vignette for plotting multiple turfs.

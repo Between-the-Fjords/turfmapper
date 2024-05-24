@@ -28,21 +28,19 @@ To make the task easier, we developed turf-maps that plot each taxon per turf pe
 #| message = FALSE
 # load packages
 library("turfmapper")
-#library("tidyverse")
 library("dplyr")
 library("tidyr")
 library("purrr")
-library(pipebind) # so native pipe can be used
 ```
 
 
-For each 1m^2^ turf, vegetation cover is estimated on a percent scale, and presence/absence is recorded on a 4 x 4 sub-turf grid. A sample of the data is included in the package
+For each 1m^2^ turf, vegetation cover is estimated on a percent scale, and presence/absence is recorded on a 4 x 4 sub-turf grid and reported in columns freq1--freq16. A sample of the data is included in the package
 
 ```{r}
 #| label = "load-data"
 data(heath)
 
-heath |> slice(1:10) |> 
+heath |> head() |> 
   select(site:freq5) |>
   knitr::kable()
 ```
@@ -52,15 +50,15 @@ We need to reformat the data with `tidyr::pivot_longer()` to make put it into a 
 ```{r}
 #| label = "pivot-long"
 heath_long <- heath |> 
-  pivot_longer(cols = matches("^freq\\d+$"), 
+  pivot_longer(cols = matches("^freq\\d+$"), # subplot presence-absence columns 
                names_to = "subturf", 
                values_to = "presence", 
                names_prefix = "freq", 
                names_transform = list(subturf = as.integer)) |> 
-  filter(presence != "0")#only want presences
+  filter(presence != "0") # only want presences
 
 #first few columns
-heath_long |> slice(1:10) |> 
+heath_long |> head() |> 
   knitr::kable()
 ```
 
@@ -73,7 +71,7 @@ grid <- make_grid(ncol = 4)
 plot_subturf_grid(grid_long = grid)
 ```
 
-This function will plot the data from one turf over time. 
+`make_turf_plot()` will plot the data from one turf over time. It is wrapped in an anonymous function so that the site and plot name can be added as a title.
 
 ```{r}
 #| label = "one_plot",
@@ -82,20 +80,20 @@ This function will plot the data from one turf over time.
 
 heath_long |>
   filter(plot == "10.1.") |>
-  bind(x, 
+  (\(x){ 
     make_turf_plot(
       data = x,
       year = year, species = species, cover = cover, subturf = subturf, 
       title = glue::glue("Site {x$site}: plot {x$plot}"), 
       grid_long = grid)
-  )
+  })()
 ```
 
 There are a few things than need checking here, for example, _Agrostis capillaris_ vs. _Agrostis sp_, _Festuca_, and _Rhytidiadelphus_.
 
 # Multiple Subturf maps
 
-There are lots of turfs, and I want to be able to print them all at once which I can do using the `purrr` package to iterate over the data using the above function. 
+There are lots of turfs, and I want to be able to print them all at once which I can do using `purrr::pmap()` to iterate over the data using `make_turf_plot()`. 
 
 ```{r}
 #| label = "many_plots",
@@ -109,18 +107,14 @@ x <- heath_long |>
   arrange(site, plot) |> 
   group_by(site, plot) |> 
   nest() |> 
-  bind(x, 
-    {map2(
-      .x = x$data, 
-      .y = glue::glue("Site {x$site}: plot {x$plot}"),
-      .f = ~make_turf_plot(
-        data = .x, year = year, species = species, 
-        cover = cover, subturf = subturf, title = .y, grid_long = grid)
-      )}
-    ) |> 
+  pmap(.f = \(site, plot, data){ 
+      make_turf_plot(
+        data = data,
+        year = year, species = species, cover = cover, subturf = subturf, 
+        title = glue::glue("Site {site}: plot {plot}"), 
+        grid_long = grid)
+      }) |> 
   walk(print) #print all maps
 ```
 
 If the plots aren't large enough, change `fig.height` in the chunk options.
-
-Use this vignette's source RMD file as a template.
