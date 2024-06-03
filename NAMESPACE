@@ -2,9 +2,9 @@
 
 export(make_grid)
 export(make_turf_plot)
-export(make_turf_plot_no_subturfs)
 export(plot_subturf_grid)
 importFrom(dplyr,left_join)
+importFrom(dplyr,pull)
 importFrom(dplyr,rename)
 importFrom(ggplot2,aes)
 importFrom(ggplot2,coord_equal)

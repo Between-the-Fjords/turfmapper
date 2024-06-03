@@ -84,17 +84,40 @@ plot_subturf_grid(grid_long = grid)
 
 heath_long |>
   filter(plot == "10.1.") |>
-  (\(x){
-    make_turf_plot(
-      data = x,
-      year = year, species = species, cover = cover, subturf = subturf,
-      title = glue::glue("Site {x$site}: plot {x$plot}"),
-      grid_long = grid
-    )
-  })()
+  make_turf_plot(
+    data = _,
+    year = year, species = species, cover = cover, subturf = subturf,
+    grid_long = grid,
+    site_id = site,
+    turf_id = plot
+  )
 ```
 
 There are a few things than need checking here, for example, _Agrostis capillaris_ vs. _Agrostis sp_, _Festuca_, and _Rhytidiadelphus_.
+
+# No subturf data?
+
+If there are no subturf data, you can still use `make_turf_plot`.
+We just don't set the `subturf` and `grid_long` arguments.
+
+```{r}
+#| label = no-subturf,
+#| eval = TRUE,
+#| fig.height = 11,
+#| fig.width=  7,
+#| warning=  FALSE
+
+
+make_turf_plot(
+  data = heath,
+  year = year,
+  species = species,
+  cover = cover,
+  site_id = site,
+  turf_id = plot
+)
+```
+
 
 # Multiple Subturf maps
 
@@ -125,27 +148,4 @@ x <- heath_long |>
 
 If the plots aren't large enough, change `fig.height` in the chunk options.
 
-# No subturf data
-
-If there are no subturf data, then you can use `make_turf_plot_no_subturfs()`. It is essentially a wrapper for `ggplot2::geom_tile()`.
-
-```{r}
-#| label = no-subturf,
-#| eval = TRUE,
-#| fig.height = 11,
-#| fig.width=  7,
-#| warning=  FALSE
-
-heath |>
-  select(-starts_with("freq")) |> # remove subturf data
-  (\(x){
-    make_turf_plot_no_subturfs(
-      data = x,
-      year = as.numeric(year),
-      species = species,
-      cover = cover,
-      title = glue::glue("Site {x$site}: plot {x$plot}")
-    )
-  })()
-```
 

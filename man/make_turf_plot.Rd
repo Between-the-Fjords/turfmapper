@@ -4,7 +4,17 @@
 \alias{make_turf_plot}
 \title{Subturf maps over time}
 \usage{
-make_turf_plot(data, grid_long, species, cover, year, subturf, title)
+make_turf_plot(
+  data,
+  grid_long,
+  species,
+  cover,
+  year,
+  subturf,
+  title,
+  site_id = "",
+  turf_id = ""
+)
 }
 \arguments{
 \item{data}{Community data.frame in long form}
@@ -19,7 +29,11 @@ make_turf_plot(data, grid_long, species, cover, year, subturf, title)
 
 \item{subturf}{name of column with subturf IDs}
 
-\item{title}{character; text for title}
+\item{title}{character; text for title if missing `site_id` and `turf_id` are used to make a title}
+
+\item{site_id}{name of Site ID column for plot title}
+
+\item{turf_id}{name of Turf ID column for plot title}
 }
 \value{
 a ggplot object

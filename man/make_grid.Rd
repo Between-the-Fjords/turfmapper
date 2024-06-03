@@ -27,17 +27,17 @@ a ggplot object
 Makes and optionally plots grid of sub-turfs.
 }
 \details{
-use `ncol` and `nrow` if subturf IDs start at 1 in the 
+use `ncol` and `nrow` if subturf IDs start at 1 in the
 top left and are read left-right. Use `grid` in other cases.
 }
 \examples{
-#square
+# square
 make_grid(ncol = 4)
 
-#Rectangular
+# Rectangular
 make_grid(ncol = 4, nrow = 5)
 
-#snake
+# snake
 make_grid(grid = rbind(1:4, 8:5, 9:12, 16:13))
 
 }

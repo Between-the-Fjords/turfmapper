@@ -11,8 +11,7 @@
 #' @importFrom ggplot2 ggplot aes geom_tile facet_grid ggtitle
 #' @importFrom ggplot2 scale_x_continuous scale_y_discrete scale_fill_distiller
 #' @importFrom ggplot2 theme_bw theme element_blank
-#'
-#' @export
+
 
 make_turf_plot_no_subturfs <- function(data, year, species, cover, title) {
   data |>
@@ -24,6 +23,7 @@ make_turf_plot_no_subturfs <- function(data, year, species, cover, title) {
     scale_fill_distiller(type = "seq", palette = "Greens", direction = 1, limits = c(0, NA)) +
     theme_bw() +
     theme(
-      axis.title = element_blank()
+      axis.title = element_blank(),
+      panel.grid = element_blank()
     )
 }

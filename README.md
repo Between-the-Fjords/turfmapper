@@ -47,14 +47,13 @@ This function will plot the data from one turf over time.
 ``` r
 heath_long |>
   filter(plot == "10.1.") |>
-  (\(x){
-    make_turf_plot(
-      data = x,
-      year = year, species = species, cover = cover, subturf = subturf,
-      title = glue::glue("Site {x$site}: plot {x$plot}"),
-      grid_long = grid
-    )
-  })()
+  make_turf_plot(
+    data = _,
+    year = year, species = species, cover = cover, subturf = subturf,
+    site_id = site,
+    turf_id = plot,
+    grid_long = grid
+  )
 ```
 
 <img src="man/figures/README-one_plot-1.png" width="100%" />
