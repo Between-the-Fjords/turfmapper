@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">turfmapper</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,7 +124,7 @@ in the package</p>
 </colgroup>
 <thead><tr class="header">
 <th align="left">site</th>
-<th align="left">year</th>
+<th align="right">year</th>
 <th align="left">plot</th>
 <th align="left">species</th>
 <th align="right">cover</th>
@@ -137,7 +137,7 @@ in the package</p>
 <tbody>
 <tr class="odd">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Calluna_vulgaris</td>
 <td align="right">1</td>
@@ -149,7 +149,7 @@ in the package</p>
 </tr>
 <tr class="even">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Arctous_alpinus</td>
 <td align="right">10</td>
@@ -161,7 +161,7 @@ in the package</p>
 </tr>
 <tr class="odd">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Trientalis_europea</td>
 <td align="right">3</td>
@@ -173,7 +173,7 @@ in the package</p>
 </tr>
 <tr class="even">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Avenella_flexuosa</td>
 <td align="right">2</td>
@@ -185,7 +185,7 @@ in the package</p>
 </tr>
 <tr class="odd">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Vaccinium_vitis-idea</td>
 <td align="right">3</td>
@@ -197,7 +197,7 @@ in the package</p>
 </tr>
 <tr class="even">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Potentilla_erecta</td>
 <td align="right">5</td>
@@ -230,7 +230,7 @@ post</a>) for more about <code><a href="https://tidyr.tidyverse.org/reference/pi
 <table class="table">
 <thead><tr class="header">
 <th align="left">site</th>
-<th align="left">year</th>
+<th align="right">year</th>
 <th align="left">plot</th>
 <th align="left">species</th>
 <th align="right">cover</th>
@@ -240,7 +240,7 @@ post</a>) for more about <code><a href="https://tidyr.tidyverse.org/reference/pi
 <tbody>
 <tr class="odd">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Calluna_vulgaris</td>
 <td align="right">1</td>
@@ -249,7 +249,7 @@ post</a>) for more about <code><a href="https://tidyr.tidyverse.org/reference/pi
 </tr>
 <tr class="even">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Calluna_vulgaris</td>
 <td align="right">1</td>
@@ -258,7 +258,7 @@ post</a>) for more about <code><a href="https://tidyr.tidyverse.org/reference/pi
 </tr>
 <tr class="odd">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Calluna_vulgaris</td>
 <td align="right">1</td>
@@ -267,7 +267,7 @@ post</a>) for more about <code><a href="https://tidyr.tidyverse.org/reference/pi
 </tr>
 <tr class="even">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Calluna_vulgaris</td>
 <td align="right">1</td>
@@ -276,7 +276,7 @@ post</a>) for more about <code><a href="https://tidyr.tidyverse.org/reference/pi
 </tr>
 <tr class="odd">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Calluna_vulgaris</td>
 <td align="right">1</td>
@@ -285,7 +285,7 @@ post</a>) for more about <code><a href="https://tidyr.tidyverse.org/reference/pi
 </tr>
 <tr class="even">
 <td align="left">BUO</td>
-<td align="left">2016</td>
+<td align="right">2016</td>
 <td align="left">10.1.</td>
 <td align="left">Calluna_vulgaris</td>
 <td align="right">1</td>
@@ -307,25 +307,42 @@ name can be added as a title.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">heath_long</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">plot</span> <span class="op">==</span> <span class="st">"10.1."</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="fu"><a href="../reference/make_turf_plot.html">make_turf_plot</a></span><span class="op">(</span></span>
-<span>      data <span class="op">=</span> <span class="va">x</span>,</span>
-<span>      year <span class="op">=</span> <span class="va">year</span>, species <span class="op">=</span> <span class="va">species</span>, cover <span class="op">=</span> <span class="va">cover</span>, subturf <span class="op">=</span> <span class="va">subturf</span>,</span>
-<span>      title <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Site {x$site}: plot {x$plot}"</span><span class="op">)</span>,</span>
-<span>      grid_long <span class="op">=</span> <span class="va">grid</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/make_turf_plot.html">make_turf_plot</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">_</span>,</span>
+<span>    year <span class="op">=</span> <span class="va">year</span>, species <span class="op">=</span> <span class="va">species</span>, cover <span class="op">=</span> <span class="va">cover</span>, subturf <span class="op">=</span> <span class="va">subturf</span>,</span>
+<span>    grid_long <span class="op">=</span> <span class="va">grid</span>,</span>
+<span>    site_id <span class="op">=</span> <span class="va">site</span>,</span>
+<span>    turf_id <span class="op">=</span> <span class="va">plot</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="turf_maps_files/figure-html/one_plot-1.png" width="672"></p>
 <p>There are a few things than need checking here, for example,
 <em>Agrostis capillaris</em> vs. <em>Agrostis sp</em>, <em>Festuca</em>,
 and <em>Rhytidiadelphus</em>.</p>
+<div class="section level2">
+<h2 id="no-subturf-data">No subturf data?<a class="anchor" aria-label="anchor" href="#no-subturf-data"></a>
+</h2>
+<p>If there are no subturf data, you can still use
+<code>make_turf_plot</code>. We just don’t set the <code>subturf</code>
+and <code>grid_long</code> arguments.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="../reference/make_turf_plot.html">make_turf_plot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">heath</span>,</span>
+<span>  year <span class="op">=</span> <span class="va">year</span>,</span>
+<span>  species <span class="op">=</span> <span class="va">species</span>,</span>
+<span>  cover <span class="op">=</span> <span class="va">cover</span>,</span>
+<span>  site_id <span class="op">=</span> <span class="va">site</span>,</span>
+<span>  turf_id <span class="op">=</span> <span class="va">plot</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="turf_maps_files/figure-html/no-subturf-1.png" width="672"></p>
+</div>
 <div class="section level2">
 <h2 id="multiple-subturf-maps">Multiple Subturf maps<a class="anchor" aria-label="anchor" href="#multiple-subturf-maps"></a>
 </h2>
 <p>There are lots of turfs, and I want to be able to print them all at
 once which I can do using <code><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">purrr::pmap()</a></code> to iterate over the
 data using <code><a href="../reference/make_turf_plot.html">make_turf_plot()</a></code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">heath_long</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># sort</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">site</span>, <span class="va">plot</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -343,26 +360,6 @@ data using <code><a href="../reference/make_turf_plot.html">make_turf_plot()</a>
 <p><img src="turf_maps_files/figure-html/many_plots-1.png" width="672"><img src="turf_maps_files/figure-html/many_plots-2.png" width="672"></p>
 <p>If the plots aren’t large enough, change <code>fig.height</code> in
 the chunk options.</p>
-</div>
-<div class="section level2">
-<h2 id="no-subturf-data">No subturf data<a class="anchor" aria-label="anchor" href="#no-subturf-data"></a>
-</h2>
-<p>If there are no subturf data, then you can use
-<code><a href="../reference/make_turf_plot_no_subturfs.html">make_turf_plot_no_subturfs()</a></code>. It is essentially a wrapper
-for <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">ggplot2::geom_tile()</a></code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">heath</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"freq"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># remove subturf data</span></span>
-<span>  <span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
-<span>    <span class="fu"><a href="../reference/make_turf_plot_no_subturfs.html">make_turf_plot_no_subturfs</a></span><span class="op">(</span></span>
-<span>      data <span class="op">=</span> <span class="va">x</span>,</span>
-<span>      year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span>,</span>
-<span>      species <span class="op">=</span> <span class="va">species</span>,</span>
-<span>      cover <span class="op">=</span> <span class="va">cover</span>,</span>
-<span>      title <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Site {x$site}: plot {x$plot}"</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="turf_maps_files/figure-html/no-subturf-1.png" width="672"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

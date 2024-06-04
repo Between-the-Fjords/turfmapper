@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">turfmapper</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,13 +88,13 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>use `ncol` and `nrow` if subturf IDs start at 1 in the 
+    <p>use `ncol` and `nrow` if subturf IDs start at 1 in the
 top left and are read left-right. Use `grid` in other cases.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#square</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># square</span></span></span>
 <span class="r-in"><span><span class="fu">make_grid</span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    .x .y subturf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 -1       1</span>
@@ -114,7 +114,7 @@ top left and are read left-right. Use `grid` in other cases.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15  4 -3      12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 16  4 -4      16</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#Rectangular</span></span></span>
+<span class="r-in"><span><span class="co"># Rectangular</span></span></span>
 <span class="r-in"><span><span class="fu">make_grid</span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    .x .y subturf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 -1       1</span>
@@ -138,7 +138,7 @@ top left and are read left-right. Use `grid` in other cases.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 19  4 -4      16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 20  4 -5      20</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#snake</span></span></span>
+<span class="r-in"><span><span class="co"># snake</span></span></span>
 <span class="r-in"><span><span class="fu">make_grid</span><span class="op">(</span>grid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">8</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">9</span><span class="op">:</span><span class="fl">12</span>, <span class="fl">16</span><span class="op">:</span><span class="fl">13</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    .x .y subturf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   1 -1       1</span>
