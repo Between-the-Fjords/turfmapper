@@ -3,7 +3,7 @@ pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   turf_maps: turf_maps.html
-last_built: 2024-06-04T21:16Z
+last_built: 2024-06-25T13:36Z
 urls:
   reference: https://between-the-fjords.github.io/turfmapper/reference
   article: https://between-the-fjords.github.io/turfmapper/articles
