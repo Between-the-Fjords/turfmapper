@@ -2,7 +2,7 @@ Package: turfmapper
 Title: Plot Community Composition Maps Over Time
 Version: 0.0.0.9002
 Authors@R: 
-    person(given = "Richard",
+    person(given = c("Richard", "James"),
            family = "Telford",
            role = c("aut", "cre"),
            email = "richard.telford@uib.no",
