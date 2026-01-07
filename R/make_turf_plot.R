@@ -50,7 +50,7 @@ make_turf_plot_subturfs <- function(data, grid_long, species, cover, year, subtu
     y = .data$.y,
     fill = {{ cover }}
   )) +
-    geom_tile(colour = "grey60") +
+    geom_tile(colour = "grey60", height = 1, width = 1) +
     facet_grid(species ~ year) +
     ggtitle(title) +
     scale_x_continuous(expand = c(0, 0)) +
